@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>檢測裝置類型</title>
+    <script>
+        function getDeviceType() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // 判斷是否是 iOS 裝置
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'iOS';
+            }
+
+            // 判斷是否是 Android 裝置
+            if (/android/i.test(userAgent)) {
+                return 'Android';
+            }
+
+            // 判斷是否是桌機
+            if (/Windows|Macintosh|Linux/.test(userAgent)) {
+                return 'Desktop';
+            }
+
+            return 'Unknown';
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const deviceType = getDeviceType();
+            if (deviceType === 'iOS') {
+                window.location.href = 'https://apps.apple.com/app/id1177809547';
+            } else if (deviceType === 'Android') {
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.claridy.TCLibApp';
+            } else if (deviceType === 'Desktop') {
+                window.location.href = 'https://rwd-library.taichung.gov.tw/webpac_rwd/app_qrcode.cfm';
+            } else {
+                window.location.href = 'https://rwd-library.taichung.gov.tw/webpac_rwd/app_qrcode.cfm';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>檢測裝置類型</h1>
+    <p id="deviceType">正在檢測...</p>
+</body>
+</html>
